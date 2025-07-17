@@ -1,0 +1,283 @@
+<div class="register-container" [class]="(currentTheme$ | async) + '-theme'">
+  <!-- Background com overlay -->
+  <div class="register-background"></div>
+  
+  <!-- Header com logo e tema -->
+  <div class="register-header">
+    <div class="logo-section">
+      <mat-icon class="logo-icon">security</mat-icon>
+      <h1 class="app-title">ServControl</h1>
+      <span class="app-subtitle">Individual</span>
+    </div>
+    
+    <button 
+      mat-icon-button 
+      class="theme-toggle"
+      (click)="toggleTheme()"
+      matTooltip="Alternar tema">
+      <mat-icon>brightness_6</mat-icon>
+    </button>
+  </div>
+
+  <!-- Card principal de cadastro -->
+  <div class="register-content">
+    <mat-card class="register-card">
+      <mat-card-header>
+        <div class="register-card-header">
+          <mat-icon class="register-icon">person_add</mat-icon>
+          <mat-card-title>Criar nova conta</mat-card-title>
+          <mat-card-subtitle>Preencha os dados para começar</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <!-- Formulário de cadastro -->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+          
+          <!-- Seção: Dados Pessoais -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <mat-icon>person</mat-icon>
+              Dados Pessoais
+            </h3>
+            
+            <div class="form-row">
+              <!-- Nome completo -->
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nome completo</mat-label>
+                <input 
+                  matInput 
+                  type="text" 
+                  formControlName="name"
+                  placeholder="Seu nome completo"
+                  autocomplete="name">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="isNameInvalid">
+                  {{ nameErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <!-- Email -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Email</mat-label>
+                <input 
+                  matInput 
+                  type="email" 
+                  formControlName="email"
+                  placeholder="seu@email.com"
+                  autocomplete="email">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="isEmailInvalid">
+                  {{ emailErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+
+              <!-- CPF -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>CPF</mat-label>
+                <input 
+                  matInput 
+                  type="text" 
+                  formControlName="cpf"
+                  placeholder="000.000.000-00"
+                  maxlength="14">
+                <mat-icon matSuffix>badge</mat-icon>
+                <mat-error *ngIf="isCpfInvalid">
+                  {{ cpfErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <!-- Telefone -->
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Telefone</mat-label>
+                <input 
+                  matInput 
+                  type="tel" 
+                  formControlName="phone"
+                  placeholder="(11) 99999-9999"
+                  autocomplete="tel">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error *ngIf="isPhoneInvalid">
+                  {{ phoneErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Seção: Dados Profissionais -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <mat-icon>work</mat-icon>
+              Dados Profissionais
+            </h3>
+            
+            <div class="form-row">
+              <!-- Graduação -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Graduação</mat-label>
+                <mat-select formControlName="graduation">
+                  <mat-option *ngFor="let grad of graduationOptions" [value]="grad.value">
+                    {{ grad.label }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>military_tech</mat-icon>
+                <mat-error *ngIf="graduationControl?.invalid && graduationControl?.touched">
+                  Graduação é obrigatória
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Unidade -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Unidade</mat-label>
+                <input 
+                  matInput 
+                  type="text" 
+                  formControlName="unit"
+                  placeholder="Ex: 1º BPM">
+                <mat-icon matSuffix>location_city</mat-icon>
+                <mat-error *ngIf="unitControl?.invalid && unitControl?.touched">
+                  Unidade é obrigatória
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Seção: Credenciais -->
+          <div class="form-section">
+            <h3 class="section-title">
+              <mat-icon>lock</mat-icon>
+              Credenciais de Acesso
+            </h3>
+            
+            <div class="form-row">
+              <!-- Senha -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Senha</mat-label>
+                <input 
+                  matInput 
+                  [type]="hidePassword ? 'password' : 'text'"
+                  formControlName="password"
+                  placeholder="Sua senha segura"
+                  autocomplete="new-password">
+                <button 
+                  mat-icon-button 
+                  matSuffix 
+                  type="button"
+                  (click)="togglePasswordVisibility()">
+                  <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="isPasswordInvalid">
+                  {{ passwordErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Confirmar senha -->
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Confirmar senha</mat-label>
+                <input 
+                  matInput 
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
+                  formControlName="confirmPassword"
+                  placeholder="Confirme sua senha"
+                  autocomplete="new-password">
+                <button 
+                  mat-icon-button 
+                  matSuffix 
+                  type="button"
+                  (click)="toggleConfirmPasswordVisibility()">
+                  <mat-icon>{{ hideConfirmPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                </button>
+                <mat-error *ngIf="isConfirmPasswordInvalid">
+                  {{ confirmPasswordErrorMessage }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Dica de senha -->
+            <div class="password-hint">
+              <mat-icon class="hint-icon">info</mat-icon>
+              <span>A senha deve conter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo</span>
+            </div>
+          </div>
+
+          <!-- Seção: Termos e Condições -->
+          <div class="form-section">
+            <div class="terms-section">
+              <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
+                Aceito os <a href="#" class="terms-link">Termos de Uso</a>
+              </mat-checkbox>
+              
+              <mat-checkbox formControlName="acceptPrivacy" class="terms-checkbox">
+                Aceito a <a href="#" class="terms-link">Política de Privacidade</a>
+              </mat-checkbox>
+              
+              <mat-checkbox formControlName="receiveNotifications" class="terms-checkbox">
+                Quero receber notificações por email
+              </mat-checkbox>
+            </div>
+          </div>
+
+          <!-- Botão de cadastro -->
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit"
+            class="register-button full-width"
+            [disabled]="isLoading || registerForm.invalid">
+            <mat-spinner 
+              *ngIf="isLoading" 
+              diameter="20" 
+              class="spinner-inline">
+            </mat-spinner>
+            <span *ngIf="!isLoading">Criar Conta</span>
+            <span *ngIf="isLoading">Criando conta...</span>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider-section">
+          <mat-divider></mat-divider>
+          <span class="divider-text">ou</span>
+          <mat-divider></mat-divider>
+        </div>
+
+        <!-- Cadastro social -->
+        <div class="social-register">
+          <button 
+            mat-stroked-button 
+            class="google-register-button full-width"
+            (click)="onGoogleRegister()"
+            [disabled]="isLoading">
+            <mat-icon class="google-icon">google</mat-icon>
+            Criar conta com Google
+          </button>
+        </div>
+      </mat-card-content>
+
+      <!-- Footer do card -->
+      <mat-card-actions class="register-card-actions">
+        <div class="login-section">
+          <span>Já tem uma conta?</span>
+          <a mat-button routerLink="/auth/login" class="login-link">
+            Fazer login
+          </a>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Footer informativo -->
+  <div class="register-footer">
+    <p class="footer-text">
+      <mat-icon class="footer-icon">verified_user</mat-icon>
+      Seus dados estão seguros e protegidos
+    </p>
+    <p class="version-text">
+      v1.0.0 | ServControl Individual © 2025
+    </p>
+  </div>
+</div>

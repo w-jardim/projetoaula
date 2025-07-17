@@ -1,0 +1,70 @@
+<!-- =============================================
+     HEADER COMPONENT - SERVCONTROL INDIVIDUAL
+     ============================================= -->
+<mat-toolbar class="header-toolbar" [class]="(currentTheme$ | async) + '-theme'">
+  <!-- Menu Toggle (Mobile) -->
+  <button 
+    *ngIf="isHandset"
+    mat-icon-button
+    class="menu-toggle"
+    (click)="onMenuToggle()"
+    matTooltip="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Logo e Título -->
+  <div class="header-brand">
+    <mat-icon class="brand-icon">military_tech</mat-icon>
+    <span class="brand-title">ServControl</span>
+    <span class="brand-subtitle">Individual</span>
+  </div>
+
+  <!-- Spacer -->
+  <span class="header-spacer"></span>
+
+  <!-- Actions -->
+  <div class="header-actions">
+    <!-- Notificações -->
+    <button 
+      mat-icon-button
+      class="action-button"
+      matTooltip="Notificações">
+      <mat-icon [matBadge]="3" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+    </button>
+
+    <!-- Alternar Tema -->
+    <button 
+      mat-icon-button
+      class="action-button"
+      (click)="toggleTheme()"
+      matTooltip="Alternar tema">
+      <mat-icon>brightness_6</mat-icon>
+    </button>
+
+    <!-- Menu do Usuário -->
+    <button 
+      mat-icon-button 
+      class="user-menu-trigger"
+      [matMenuTriggerFor]="userMenu"
+      matTooltip="Menu do usuário">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <!-- Menu Dropdown -->
+    <mat-menu #userMenu="matMenu" class="user-menu">
+      <button mat-menu-item routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        <span>Meu Perfil</span>
+      </button>
+      <button mat-menu-item routerLink="/profile/settings">
+        <mat-icon>settings</mat-icon>
+        <span>Configurações</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

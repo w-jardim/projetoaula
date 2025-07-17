@@ -1,0 +1,580 @@
+/* =============================================
+   REGISTER COMPONENT - SERVCONTROL INDIVIDUAL
+   ============================================= */
+
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+/* =============================================
+   BACKGROUND
+   ============================================= */
+.register-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    var(--color-primary) 0%, 
+    var(--color-primary-dark) 50%, 
+    var(--color-accent) 100%);
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* Variações por tema */
+.militar-theme .register-background {
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 50%, #FFC107 100%);
+}
+
+.dark-theme .register-background {
+  background: linear-gradient(135deg, #BB86FC 0%, #7B1FA2 50%, #03DAC6 100%);
+}
+
+.light-theme .register-background {
+  background: linear-gradient(135deg, #1976D2 0%, #0D47A1 50%, #FF5722 100%);
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.register-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: var(--color-primary);
+}
+
+.app-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-on-surface);
+}
+
+.app-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--color-primary);
+  margin-left: 8px;
+}
+
+.theme-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* =============================================
+   CONTEÚDO PRINCIPAL
+   ============================================= */
+.register-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 24px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 0;
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  
+  .dark-theme & {
+    background-color: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* =============================================
+   HEADER DO CARD
+   ============================================= */
+.register-card-header {
+  text-align: center;
+  padding: 24px 32px 16px;
+}
+
+.register-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.mat-mdc-card-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-on-surface);
+}
+
+.mat-mdc-card-subtitle {
+  font-size: 14px;
+  color: var(--color-on-surface);
+  opacity: 0.7;
+}
+
+/* =============================================
+   FORMULÁRIO
+   ============================================= */
+.register-form {
+  padding: 16px 32px;
+}
+
+.form-section {
+  margin-bottom: 32px;
+  
+  &:last-child {
+    margin-bottom: 16px;
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-primary);
+  
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+  min-width: 0;
+}
+
+.mat-mdc-form-field {
+  .mat-mdc-text-field-wrapper {
+    border-radius: 12px;
+  }
+  
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__trailing {
+    border-radius: 12px;
+  }
+}
+
+/* =============================================
+   DICA DE SENHA
+   ============================================= */
+.password-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background-color: rgba(33, 150, 243, 0.1);
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-info);
+  
+  .hint-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =============================================
+   TERMOS E CONDIÇÕES
+   ============================================= */
+.terms-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.terms-checkbox {
+  .mdc-checkbox {
+    --mdc-checkbox-selected-checkmark-color: var(--color-on-primary);
+    --mdc-checkbox-selected-focus-icon-color: var(--color-primary);
+    --mdc-checkbox-selected-hover-icon-color: var(--color-primary);
+    --mdc-checkbox-selected-icon-color: var(--color-primary);
+    --mdc-checkbox-selected-pressed-icon-color: var(--color-primary);
+  }
+  
+  .mdc-form-field {
+    font-size: 14px;
+  }
+}
+
+.terms-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* =============================================
+   BOTÕES
+   ============================================= */
+.register-button {
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  position: relative;
+  
+  &:disabled {
+    opacity: 0.7;
+  }
+}
+
+.spinner-inline {
+  margin-right: 8px;
+}
+
+/* =============================================
+   DIVIDER
+   ============================================= */
+.divider-section {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  padding: 0 32px;
+}
+
+.divider-text {
+  margin: 0 16px;
+  font-size: 14px;
+  color: var(--color-on-surface);
+  opacity: 0.6;
+}
+
+/* =============================================
+   CADASTRO SOCIAL
+   ============================================= */
+.social-register {
+  padding: 0 32px 24px;
+}
+
+.google-register-button {
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid #4285f4;
+  color: #4285f4;
+  font-weight: 500;
+  
+  &:hover {
+    background-color: rgba(66, 133, 244, 0.1);
+  }
+}
+
+.google-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* =============================================
+   ACTIONS DO CARD
+   ============================================= */
+.register-card-actions {
+  padding: 16px 32px 24px;
+  justify-content: center;
+}
+
+.login-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  
+  span {
+    color: var(--color-on-surface);
+    opacity: 0.7;
+  }
+}
+
+.login-link {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.register-footer {
+  text-align: center;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-on-surface);
+  opacity: 0.8;
+  margin: 0 0 6px 0;
+}
+
+.footer-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.version-text {
+  font-size: 12px;
+  color: var(--color-on-surface);
+  opacity: 0.6;
+  margin: 0;
+}
+
+/* =============================================
+   RESPONSIVIDADE
+   ============================================= */
+@media (max-width: 768px) {
+  .register-header {
+    padding: 16px 20px;
+  }
+  
+  .register-content {
+    padding: 20px 16px;
+  }
+  
+  .register-card {
+    max-width: 100%;
+  }
+  
+  .register-form,
+  .social-register,
+  .divider-section,
+  .register-card-actions {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .register-card-header {
+    padding: 20px 20px 12px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .half-width {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-header {
+    padding: 12px 16px;
+  }
+  
+  .app-title {
+    font-size: 18px;
+  }
+  
+  .app-subtitle {
+    display: none;
+  }
+  
+  .register-content {
+    padding: 16px 12px;
+  }
+  
+  .register-form,
+  .social-register,
+  .divider-section,
+  .register-card-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .register-card-header {
+    padding: 16px 16px 12px;
+  }
+  
+  .mat-mdc-card-title {
+    font-size: 20px;
+  }
+  
+  .register-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .form-section {
+    margin-bottom: 24px;
+  }
+  
+  .password-hint {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* =============================================
+   ANIMAÇÕES
+   ============================================= */
+.register-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-icon {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+.form-section {
+  animation: fadeInStagger 0.6s ease-out backwards;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.1s; }
+.form-section:nth-child(2) { animation-delay: 0.2s; }
+.form-section:nth-child(3) { animation-delay: 0.3s; }
+.form-section:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================
+   ESTADOS DE FOCO E HOVER
+   ============================================= */
+.mat-mdc-form-field:not(.mat-form-field-disabled).mat-focused {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--color-primary);
+    border-width: 2px;
+  }
+}
+
+.mat-mdc-button:not(:disabled) {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* =============================================
+   ESTADOS DE ERRO
+   ============================================= */
+.mat-mdc-form-field.mat-form-field-invalid {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--color-error);
+  }
+}
+
+/* =============================================
+   SEÇÕES ESPECÍFICAS
+   ============================================= */
+.form-section:nth-child(1) .section-title {
+  color: #2196F3; /* Azul para dados pessoais */
+}
+
+.form-section:nth-child(2) .section-title {
+  color: #FF9800; /* Laranja para dados profissionais */
+}
+
+.form-section:nth-child(3) .section-title {
+  color: #4CAF50; /* Verde para credenciais */
+}

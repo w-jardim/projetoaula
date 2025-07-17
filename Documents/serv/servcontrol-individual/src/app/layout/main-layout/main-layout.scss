@@ -1,0 +1,89 @@
+/* =============================================
+   MAIN LAYOUT - SERVCONTROL INDIVIDUAL
+   ============================================= */
+
+.main-layout-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidenav-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* =============================================
+   SIDEBAR
+   ============================================= */
+.sidenav {
+  width: 280px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--color-surface);
+  
+  .dark-theme & {
+    background-color: var(--color-surface-dark);
+    border-right-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-background);
+  
+  .dark-theme & {
+    background-color: var(--color-background-dark);
+  }
+}
+
+.content-wrapper {
+  min-height: 100%;
+  padding: 0;
+}
+
+/* =============================================
+   RESPONSIVIDADE
+   ============================================= */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* =============================================
+   TEMAS
+   ============================================= */
+.militar-theme {
+  --color-surface: #f8f9fa;
+  --color-surface-dark: #1e1e1e;
+  --color-background: #ffffff;
+  --color-background-dark: #121212;
+}
+
+.dark-theme {
+  --color-surface: #1e1e1e;
+  --color-surface-dark: #1e1e1e;
+  --color-background: #121212;
+  --color-background-dark: #121212;
+}
+
+.light-theme {
+  --color-surface: #f8f9fa;
+  --color-surface-dark: #1e1e1e;
+  --color-background: #ffffff;
+  --color-background-dark: #121212;
+}

@@ -1,0 +1,178 @@
+.recent-services-widget {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  mat-card-header {
+    padding-bottom: 16px;
+
+    mat-card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+
+      mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    mat-card-subtitle {
+      margin-top: 4px;
+      opacity: 0.7;
+      font-size: 0.875rem;
+    }
+  }
+
+  mat-card-content {
+    flex: 1;
+    padding: 0 !important;
+  }
+
+  .services-list {
+    padding: 0;
+
+    .service-item {
+      padding: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      min-height: auto;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+    }
+
+    .service-info {
+      width: 100%;
+    }
+
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .service-title {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--mat-primary-500);
+      }
+
+      mat-chip {
+        font-size: 0.75rem;
+        min-height: 24px;
+        padding: 0 8px;
+
+        mat-icon {
+          font-size: 14px;
+          width: 14px;
+          height: 14px;
+          margin-right: 4px;
+        }
+      }
+    }
+
+    .service-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 0.875rem;
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        opacity: 0.8;
+
+        .detail-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          opacity: 0.6;
+        }
+      }
+
+      .value {
+        .service-value {
+          font-weight: 600;
+          color: var(--mat-success-500, #4caf50);
+        }
+      }
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+
+      mat-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .recent-services-widget {
+    .service-details {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .service-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+
+      mat-chip {
+        align-self: flex-end;
+      }
+    }
+
+    .card-actions {
+      flex-direction: column;
+      gap: 8px;
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .recent-services-widget {
+    .service-item {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    .card-actions {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

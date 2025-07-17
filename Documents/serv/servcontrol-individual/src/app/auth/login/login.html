@@ -1,0 +1,148 @@
+<div class="login-container" [class]="(currentTheme$ | async) + '-theme'">
+  <!-- Background com overlay -->
+  <div class="login-background"></div>
+  
+  <!-- Header com logo e tema -->
+  <div class="login-header">
+    <div class="logo-section">
+      <mat-icon class="logo-icon">security</mat-icon>
+      <h1 class="app-title">ServControl</h1>
+      <span class="app-subtitle">Individual</span>
+    </div>
+    
+    <button 
+      mat-icon-button 
+      class="theme-toggle"
+      (click)="toggleTheme()"
+      matTooltip="Alternar tema">
+      <mat-icon>brightness_6</mat-icon>
+    </button>
+  </div>
+
+  <!-- Card principal de login -->
+  <div class="login-content">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <div class="login-card-header">
+          <mat-icon class="login-icon">account_circle</mat-icon>
+          <mat-card-title>Bem-vindo de volta</mat-card-title>
+          <mat-card-subtitle>Faça login em sua conta</mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <!-- Formulário de login -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+          <!-- Campo de email -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input 
+              matInput 
+              type="email" 
+              formControlName="email"
+              placeholder="seu@email.com"
+              autocomplete="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="isEmailInvalid">
+              {{ emailErrorMessage }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Campo de senha -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Senha</mat-label>
+            <input 
+              matInput 
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Sua senha"
+              autocomplete="current-password">
+            <button 
+              mat-icon-button 
+              matSuffix 
+              type="button"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="'Mostrar senha'"
+              [attr.aria-pressed]="!hidePassword">
+              <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="isPasswordInvalid">
+              {{ passwordErrorMessage }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Checkbox lembrar-me -->
+          <div class="login-options">
+            <mat-checkbox formControlName="rememberMe" class="remember-me">
+              Lembrar de mim
+            </mat-checkbox>
+            
+            <button 
+              type="button" 
+              mat-button 
+              class="forgot-password-link"
+              (click)="onForgotPassword()">
+              Esqueceu a senha?
+            </button>
+          </div>
+
+          <!-- Botão de login -->
+          <button 
+            mat-raised-button 
+            color="primary" 
+            type="submit"
+            class="login-button full-width"
+            [disabled]="isLoading">
+            <mat-spinner 
+              *ngIf="isLoading" 
+              diameter="20" 
+              class="spinner-inline">
+            </mat-spinner>
+            <span *ngIf="!isLoading">Entrar</span>
+            <span *ngIf="isLoading">Entrando...</span>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider-section">
+          <mat-divider></mat-divider>
+          <span class="divider-text">ou</span>
+          <mat-divider></mat-divider>
+        </div>
+
+        <!-- Login social -->
+        <div class="social-login">
+          <button 
+            mat-stroked-button 
+            class="google-login-button full-width"
+            (click)="onGoogleLogin()"
+            [disabled]="isLoading">
+            <mat-icon class="google-icon">google</mat-icon>
+            Continuar com Google
+          </button>
+        </div>
+      </mat-card-content>
+
+      <!-- Footer do card -->
+      <mat-card-actions class="login-card-actions">
+        <div class="register-section">
+          <span>Não tem uma conta?</span>
+          <a mat-button routerLink="/auth/register" class="register-link">
+            Criar conta
+          </a>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Footer informativo -->
+  <div class="login-footer">
+    <p class="footer-text">
+      <mat-icon class="footer-icon">shield</mat-icon>
+      Sistema seguro para controle de escalas de segurança pública
+    </p>
+    <p class="version-text">
+      v1.0.0 | ServControl Individual © 2025
+    </p>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<!-- =============================================
+     SIDEBAR COMPONENT - SERVCONTROL INDIVIDUAL
+     ============================================= -->
+<div class="sidebar-container" [class]="(currentTheme$ | async) + '-theme'">
+  <!-- Logo/Header da Sidebar -->
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <mat-icon class="logo-icon">military_tech</mat-icon>
+      <div class="logo-text" *ngIf="!isHandset">
+        <span class="logo-title">ServControl</span>
+        <span class="logo-subtitle">Individual</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="sidebar-nav">
+    <mat-nav-list class="nav-list">
+      <!-- Iterar pelos itens do menu -->
+      <ng-container *ngFor="let item of menuItems">
+        <!-- Item sem filhos -->
+        <mat-list-item 
+          *ngIf="!item.children"
+          class="nav-item"
+          [routerLink]="item.route"
+          routerLinkActive="active">
+          <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
+          <span matListItemTitle class="nav-label">{{ item.label }}</span>
+          <span *ngIf="item.badge" class="nav-badge" [matBadge]="item.badge" matBadgeSize="small"></span>
+        </mat-list-item>
+
+        <!-- Item com filhos (Expansion Panel) -->
+        <mat-expansion-panel 
+          *ngIf="item.children"
+          class="nav-expansion"
+          [hideToggle]="false">
+          <mat-expansion-panel-header class="expansion-header">
+            <mat-panel-title class="expansion-title">
+              <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+              <span class="nav-label">{{ item.label }}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <!-- Sub-itens -->
+          <div class="expansion-content">
+            <mat-nav-list class="sub-nav-list">
+              <mat-list-item 
+                *ngFor="let child of item.children"
+                class="sub-nav-item"
+                [routerLink]="child.route"
+                routerLinkActive="active">
+                <mat-icon matListItemIcon class="sub-nav-icon">{{ child.icon }}</mat-icon>
+                <span matListItemTitle class="sub-nav-label">{{ child.label }}</span>
+                <span *ngIf="child.badge" class="nav-badge" [matBadge]="child.badge" matBadgeSize="small"></span>
+              </mat-list-item>
+            </mat-nav-list>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-nav-list>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer" *ngIf="!isHandset">
+    <mat-divider></mat-divider>
+    <div class="footer-content">
+      <div class="version-info">
+        <mat-icon class="version-icon">info</mat-icon>
+        <span class="version-text">v1.0.0</span>
+      </div>
+    </div>
+  </div>
+</div>

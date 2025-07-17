@@ -1,0 +1,46 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">
+      <mat-icon>security</mat-icon>
+      Controle de Escalas
+    </h1>
+    <p class="dashboard-subtitle">Painel de controle para agentes de segurança pública</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-section">
+    <mat-grid-list [cols]="cols$ | async" rowHeight="120px" gutterSize="16px">
+      <mat-grid-tile *ngFor="let stat of dashboardStats">
+        <app-stats-card [data]="stat"></app-stats-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Row -->
+    <div class="top-row">
+      <div class="widget-item">
+        <app-quick-actions (actionClick)="onQuickAction($event)"></app-quick-actions>
+      </div>
+      <div class="widget-item">
+        <app-financial-summary></app-financial-summary>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bottom-row">
+      <div class="widget-item full-width">
+        <app-monthly-chart></app-monthly-chart>
+      </div>
+    </div>
+
+    <!-- Services List -->
+    <div class="services-row">
+      <div class="widget-item full-width">
+        <app-recent-services></app-recent-services>
+      </div>
+    </div>
+  </div>
+</div>

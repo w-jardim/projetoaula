@@ -1,0 +1,46 @@
+<!-- =============================================
+     STATS CARD WIDGET - SERVCONTROL
+     ============================================= -->
+<mat-card class="stats-card" [class]="'stats-card--' + data.color">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="stats-loading">
+    <div class="loading-skeleton">
+      <div class="skeleton-icon"></div>
+      <div class="skeleton-content">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-value"></div>
+        <div class="skeleton-subtitle"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div *ngIf="!loading" class="stats-content">
+    <!-- Header with Icon -->
+    <div class="stats-header">
+      <div class="stats-icon-container">
+        <mat-icon class="stats-icon">{{ data.icon }}</mat-icon>
+      </div>
+      
+      <!-- Trend Indicator -->
+      <div *ngIf="data.trend !== undefined" class="trend-indicator" [class]="'trend--' + trendColor">
+        <mat-icon class="trend-icon">{{ trendIcon }}</mat-icon>
+        <span class="trend-value">{{ data.trend }}%</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="stats-body">
+      <div class="stats-title">{{ data.title }}</div>
+      <div class="stats-value">{{ data.value }}</div>
+      <div *ngIf="data.subtitle" class="stats-subtitle">{{ data.subtitle }}</div>
+    </div>
+
+    <!-- Action Area -->
+    <div class="stats-actions">
+      <button mat-icon-button class="details-button" aria-label="Ver detalhes">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,39 @@
+<!-- =============================================
+     FOOTER COMPONENT - SERVCONTROL INDIVIDUAL
+     ============================================= -->
+<footer class="app-footer" [class]="(currentTheme$ | async) + '-theme'">
+  <div class="footer-content">
+    <!-- Copyright e Informações -->
+    <div class="footer-info">
+      <div class="copyright">
+        <mat-icon class="copyright-icon">shield</mat-icon>
+        <span>&copy; {{ currentYear }} ServControl Individual</span>
+        <span class="separator">•</span>
+        <span>Sistema de Controle Pessoal</span>
+      </div>
+      
+      <div class="version">
+        <mat-icon class="version-icon">info</mat-icon>
+        <span>Versão {{ version }}</span>
+      </div>
+    </div>
+
+    <!-- Links Úteis -->
+    <div class="footer-links">
+      <button mat-button class="footer-link" matTooltip="Ajuda">
+        <mat-icon>help</mat-icon>
+        <span>Ajuda</span>
+      </button>
+      
+      <button mat-button class="footer-link" matTooltip="Suporte">
+        <mat-icon>support</mat-icon>
+        <span>Suporte</span>
+      </button>
+      
+      <button mat-button class="footer-link" matTooltip="Sobre">
+        <mat-icon>info</mat-icon>
+        <span>Sobre</span>
+      </button>
+    </div>
+  </div>
+</footer>

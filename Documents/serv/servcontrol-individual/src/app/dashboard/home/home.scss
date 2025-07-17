@@ -1,0 +1,257 @@
+.dashboard-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .dashboard-header {
+    margin-bottom: 32px;
+
+    .dashboard-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--mat-primary-500);
+      margin: 0 0 8px 0;
+
+      mat-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .dashboard-subtitle {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: 0.7;
+      font-weight: 400;
+    }
+  }
+
+  .stats-section {
+    margin-bottom: 32px;
+
+    mat-grid-list {
+      ::ng-deep .mat-grid-tile {
+        overflow: visible;
+      }
+
+      ::ng-deep .mat-grid-tile-content {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      ::ng-deep app-stats-card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+    }
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr 350px;
+    gap: 24px;
+    min-height: 600px;
+
+    .left-column,
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .center-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .widget-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      &.chart-container {
+        min-height: 400px;
+      }
+
+      > * {
+        height: 100%;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+  .dashboard-container {
+    .content-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "left center"
+        "right center";
+
+      .left-column {
+        grid-area: left;
+      }
+
+      .center-column {
+        grid-area: center;
+        grid-row: 1 / -1;
+      }
+
+      .right-column {
+        grid-area: right;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+
+    .dashboard-header {
+      margin-bottom: 24px;
+
+      .dashboard-title {
+        font-size: 1.75rem;
+
+        mat-icon {
+          font-size: 1.75rem;
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+      }
+
+      .dashboard-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    .stats-section {
+      margin-bottom: 24px;
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "left"
+        "center"
+        "right";
+      gap: 16px;
+
+      .left-column,
+      .right-column {
+        gap: 16px;
+      }
+
+      .left-column {
+        grid-area: left;
+      }
+
+      .center-column {
+        grid-area: center;
+      }
+
+      .right-column {
+        grid-area: right;
+      }
+
+      .widget-container {
+        &.chart-container {
+          min-height: 300px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 12px;
+
+    .dashboard-header {
+      margin-bottom: 20px;
+
+      .dashboard-title {
+        font-size: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+
+        mat-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+    }
+
+    .content-grid {
+      gap: 12px;
+
+      .left-column,
+      .right-column {
+        gap: 12px;
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .dashboard-container {
+    .dashboard-header {
+      .dashboard-title {
+        color: var(--mat-primary-300);
+      }
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .dashboard-container {
+    .content-grid {
+      gap: 32px;
+
+      .widget-container {
+        border: 2px solid;
+        border-radius: 8px;
+        padding: 4px;
+      }
+    }
+  }
+}
+
+// Animation and transitions
+.dashboard-container {
+  .widget-container {
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Loading states
+.loading {
+  .widget-container {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

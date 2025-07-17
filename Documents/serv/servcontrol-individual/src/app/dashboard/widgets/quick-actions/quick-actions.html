@@ -1,0 +1,31 @@
+<!-- =============================================
+     QUICK ACTIONS WIDGET - SERVCONTROL
+     ============================================= -->
+<mat-card class="quick-actions-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>flash_on</mat-icon>
+      Ações Rápidas
+    </mat-card-title>
+    <mat-card-subtitle>Acesso rápido às principais funcionalidades</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="actions-content">
+    <div class="actions-grid">
+      <button 
+        *ngFor="let action of actions"
+        mat-raised-button
+        [color]="action.color"
+        class="action-button"
+        (click)="onActionClick(action.id)">
+        <div class="action-content">
+          <mat-icon class="action-icon">{{ action.icon }}</mat-icon>
+          <div class="action-text">
+            <span class="action-label">{{ action.label }}</span>
+            <span class="action-description">{{ action.description }}</span>
+          </div>
+        </div>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
